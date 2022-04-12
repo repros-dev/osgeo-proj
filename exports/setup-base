@@ -1,0 +1,31 @@
+
+module_install_dir=$1
+
+if [[ $(proj 2>&1) =~ 8.2.1 ]] ; then
+    echo "proj 8.2.1 already installed"
+else
+
+    build_dir=${module_install_dir}/build
+    proj_install_dir=${module_install_dir}/proj-8.2.1
+
+    sudo apt-get update
+    sudo apt-get -y install curl libcurl4-gnutls-dev libtiff-dev pkg-config sqlite3 libsqlite3-dev build-essential
+
+    # download source for PROJ and install
+    mkdir -p ${build_dir}
+    cd ${build_dir}
+    wget https://download.osgeo.org/proj/proj-8.2.1.tar.gz
+    gunzip proj-8.2.1.tar.gz
+    tar -xvvf proj-8.2.1.tar
+    cd ./proj-8.2.1
+    ./configure --prefix=${proj_install_dir}
+    make
+    make install
+    rm -rf ${build_dir}
+
+    repro.path ${proj_install_dir}/bin
+    repro.ldpath ${proj_install_dir}/lib
+
+fi
+
+
