@@ -7,7 +7,6 @@ RUN bash /repro/dist/setup
 
 USER repro
 
-RUN repro.require repro master ${REPROS_DEV}
-RUN repro.require osgeo-proj exports
+RUN repro.require proj-dev exports
 
 CMD  /bin/bash -il
