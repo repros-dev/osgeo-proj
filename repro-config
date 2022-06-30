@@ -1,0 +1,9 @@
+REPRO_NAME=proj-dev
+REPRO_DOCKER_ORG=cirss
+REPRO_IMAGE_TAG=latest
+
+
+image:                  build-image   ## 
+start:                  start-repro   ## 
+
+## 
